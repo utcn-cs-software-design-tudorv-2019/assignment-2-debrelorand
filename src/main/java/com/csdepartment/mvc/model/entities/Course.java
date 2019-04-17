@@ -1,22 +1,13 @@
-package com.csdepartment.entities;
+package com.csdepartment.mvc.model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
@@ -24,11 +15,11 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Course {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int courseid;
+	@Column(name="idcourse",nullable=false)
+	private int idcourse;
 	
 	@ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "idadministrator")
 	private Administrator administrator;
 	
 	@Column(name = "nume", nullable = false)
@@ -37,21 +28,24 @@ public class Course {
 	@Column(name = "credit", nullable = false)
 	private int credit;
 	
-	
-	public Course(int idCourse, Administrator administrator, String nume, int credit) {
+	public Course()
+	{
 		super();
-		this.courseid = idCourse;
+	}
+	
+	public Course(Administrator administrator, String nume, int credit) {
+		super();
 		this.administrator = administrator;
 		this.nume = nume;
 		this.credit = credit;
 	}
 
 	public int getIdCourse() {
-		return courseid;
+		return idcourse;
 	}
 
 	public void setIdCourse(int idCourse) {
-		this.courseid = idCourse;
+		this.idcourse = idCourse;
 	}
 
 	public Administrator getAdministrator() {
@@ -78,6 +72,9 @@ public class Course {
 		this.credit = credit;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "Course [idcourse=" + idcourse + ", administrator=" + administrator + ", nume=" + nume + ", credit="
+				+ credit + "]";
+	}
 }

@@ -1,13 +1,11 @@
-package com.csdepartment.services;
-
-import java.util.Optional;
+package com.csdepartment.mvc.model.servicies;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.csdepartment.entities.Administrator;
-import com.csdepartment.repositories.AdministratorRepository;
+import com.csdepartment.mvc.model.entities.Administrator;
+import com.csdepartment.mvc.model.repositories.AdministratorRepository;
 
 @Service()
 public class AdministratorService {
@@ -31,6 +29,22 @@ public class AdministratorService {
 	
 	public boolean deleteAdministrator(Administrator administrator)
 	{
-		return administratorRepository.deleteById(administrator.getId());
+		administratorRepository.deleteById(administrator.getId());
+		Administrator admin = administratorRepository.findById(administrator.getId());
+		
+		if(admin==null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	public Administrator update (Administrator administrator)
+	{
+		return administratorRepository.save(administrator);
 	}
 }

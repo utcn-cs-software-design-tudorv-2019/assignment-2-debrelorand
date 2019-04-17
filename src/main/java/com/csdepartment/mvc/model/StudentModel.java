@@ -1,6 +1,6 @@
 package com.csdepartment.mvc.model;
 
-import com.csdepartment.entities.*;
+import com.csdepartment.mvc.model.entities.Student;
 
 public class StudentModel {
 	

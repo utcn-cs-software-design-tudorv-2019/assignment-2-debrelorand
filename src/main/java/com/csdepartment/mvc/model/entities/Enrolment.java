@@ -1,67 +1,60 @@
-package com.csdepartment.entities;
+package com.csdepartment.mvc.model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-
-import java.sql.Date;
 
 @Entity
 @Table(name="enrolment")
 public class Enrolment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idEnrolment;
+	private int idenrolment;
 	
 	@ManyToOne
 	@JoinColumn(name = "idstudent")
 	private Student student;
 	
 	@ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "courseid")
+	@JoinColumn(name = "idcourse")
 	private Course course;
 	
 	@Column(name = "startdate", nullable = false)
-	private Date startDate;
+	private Date startdate;
 	
 	@Column(name = "finishdate", nullable = false)
-	private Date finishDate;
+	private Date finishdate;
 	
-	@Column(name = "int", nullable = false)
+	@Column(name = "nota", nullable = false)
 	private int nota;
 	
-	public Enrolment(int idEnrolment, Student student, Course course, Date startDate, Date finishDate, int nota) {
+	public Enrolment()
+	{
 		super();
-		this.idEnrolment = idEnrolment;
+	}
+	
+	public Enrolment(Student student, Course course, Date startDate, Date finishDate, int nota) {
+		super();
 		this.student = student;
 		this.course = course;
-		this.startDate = startDate;
-		this.finishDate = finishDate;
+		this.startdate = startDate;
+		this.finishdate = finishDate;
 		this.nota = nota;
 	}
 
 	public int getIdEnrolment() {
-		return idEnrolment;
+		return idenrolment;
 	}
 
 	public void setIdEnrolment(int idEnrolment) {
-		this.idEnrolment = idEnrolment;
+		this.idenrolment = idEnrolment;
 	}
 
 	public Student getStudent() {
@@ -81,19 +74,19 @@ public class Enrolment {
 	}
 
 	public Date getStartDate() {
-		return startDate;
+		return startdate;
 	}
 
 	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+		this.startdate = startDate;
 	}
 
 	public Date getFinishDate() {
-		return finishDate;
+		return finishdate;
 	}
 
 	public void setFinishDate(Date finishDate) {
-		this.finishDate = finishDate;
+		this.finishdate = finishDate;
 	}
 
 	public int getNota() {
@@ -102,6 +95,12 @@ public class Enrolment {
 
 	public void setNota(int nota) {
 		this.nota = nota;
+	}
+
+	@Override
+	public String toString() {
+		return "Enrolment [idenrolment=" + idenrolment + ", student=" + student.getNume() + ", course=" + course.getNume() + ", startdate="
+				+ startdate + ", finishdate=" + finishdate + ", nota=" + nota + "]";
 	}
 	
 	

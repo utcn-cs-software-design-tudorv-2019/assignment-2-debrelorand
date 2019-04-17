@@ -9,9 +9,11 @@ import org.springframework.stereotype.Component;
 import com.csdepartment.mvc.controller.HomePageController;
 import com.csdepartment.mvc.model.AdministratorModel;
 import com.csdepartment.mvc.model.StudentModel;
+import com.csdepartment.mvc.model.servicies.AdministratorService;
+import com.csdepartment.mvc.model.servicies.CourseService;
+import com.csdepartment.mvc.model.servicies.EnrolmentService;
+import com.csdepartment.mvc.model.servicies.StudentService;
 import com.csdepartment.mvc.view.HomeView;
-import com.csdepartment.services.AdministratorService;
-import com.csdepartment.services.StudentService;
 
 @Component
 public class Loader implements ApplicationListener<ContextRefreshedEvent> {
@@ -20,6 +22,10 @@ public class Loader implements ApplicationListener<ContextRefreshedEvent> {
 	StudentService studentService;
 	@Inject
 	AdministratorService administratorService;
+	@Inject
+	CourseService courseService;
+	@Inject
+	EnrolmentService enrolmentService;
 	@Inject
 	HomeView homeView;
 	@Inject

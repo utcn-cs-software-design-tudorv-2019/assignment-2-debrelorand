@@ -1,6 +1,6 @@
 package com.csdepartment.mvc.model;
 
-import com.csdepartment.entities.*;
+import com.csdepartment.mvc.model.entities.Administrator;
 
 public class AdministratorModel {
 	
@@ -14,11 +14,11 @@ public class AdministratorModel {
 		this.administrator = administrator;
 	}
 
-	public Administrator getTeacher() {
+	public Administrator getAdministrator() {
 		return administrator;
 	}
 
-	public void setTeacher(Administrator administrator) {
+	public void setAdministrator(Administrator administrator) {
 		this.administrator = administrator;
 	}
 	

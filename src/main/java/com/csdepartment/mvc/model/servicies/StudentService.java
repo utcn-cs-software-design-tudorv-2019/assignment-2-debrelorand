@@ -1,15 +1,13 @@
-package com.csdepartment.services;
+package com.csdepartment.mvc.model.servicies;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.csdepartment.entities.Course;
-import com.csdepartment.entities.Student;
-import com.csdepartment.repositories.StudentRepository;
+import com.csdepartment.mvc.model.entities.Student;
+import com.csdepartment.mvc.model.repositories.StudentRepository;
 
 @Service()
 public class StudentService {
@@ -34,7 +32,26 @@ public class StudentService {
 	
 	public boolean deleteStudent(Student student)
 	{
-		return studentRepository.deleteById(student.getIdStudent());
+		studentRepository.deleteById(student.getIdStudent());
+		Student studentt = studentRepository.findById(student.getIdStudent());
+		if (studentt==null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public Student update(Student student)
+	{
+		return studentRepository.save(student);
+	}
+	
+	public List<Student> getAll()
+	{
+		return studentRepository.findAll();
 	}
 
 }

@@ -1,15 +1,16 @@
 package com.csdepartment;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 
-import com.csdepartment.mvc.view.HomeView;
-import com.csdepartment.mvc.view.NewAccountView;
-import com.csdepartment.validators.*;
 import com.csdepartment.mvc.controller.HomePageController;
-import com.csdepartment.mvc.model.*;
+import com.csdepartment.mvc.model.AdministratorModel;
+import com.csdepartment.mvc.model.StudentModel;
+import com.csdepartment.mvc.view.HomeView;
 
+@EnableAutoConfiguration
 @SpringBootApplication
 public class SpringBootApp {
 

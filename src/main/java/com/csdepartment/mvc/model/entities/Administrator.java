@@ -1,10 +1,13 @@
-package com.csdepartment.entities;
+package com.csdepartment.mvc.model.entities;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +15,8 @@ import javax.persistence.Table;
 public class Administrator {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="idadministrator",nullable=false)
+	private int idadministrator;
 	
 	@Column(name = "nume", nullable = false)
 	private String nume;
@@ -38,6 +42,9 @@ public class Administrator {
 	@Column(name = "catedra", nullable = false)
 	private String catedra;
 	
+	@OneToMany(mappedBy="administrator")
+	private List<Course> cursurile;
+	
 	public Administrator(String nume, String prenume, String username, String password, String cnp, String adresa,
 			String email, String catedra) {
 		super();
@@ -56,11 +63,11 @@ public class Administrator {
 	}
 
 	public int getId() {
-		return id;
+		return idadministrator;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.idadministrator = id;
 	}
 
 	public String getNume() {
@@ -125,6 +132,13 @@ public class Administrator {
 
 	public void setCatedra(String catedra) {
 		this.catedra = catedra;
+	}
+
+	@Override
+	public String toString() {
+		return "Administrator [idadministrator=" + idadministrator + ", nume=" + nume + ", prenume=" + prenume
+				+ ", username=" + username + ", password=" + password + ", cnp=" + cnp + ", adresa=" + adresa
+				+ ", email=" + email + ", catedra=" + catedra + ", curs=" +cursurile + "]";
 	}
 	
 	
